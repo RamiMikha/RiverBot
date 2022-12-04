@@ -26,7 +26,7 @@ def run():
         print("--------------------")
 
 
-   #ctx gettings a bunch on context from discord.py 
+   #ctx gettings a bunch of context from discord.py 
     @bot.command(
         #this allows you to access the command with different alisases
         aliases=["p"],
