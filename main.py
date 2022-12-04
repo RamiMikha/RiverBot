@@ -39,7 +39,7 @@ def run():
     async def ping(ctx):
         await ctx.send("pong")
     
-    #the second premis takes in what the user says after the command word
+    #the second premis takes in what the user says after the command word 
     #the astricts allows you to take in a infinite amount of word the user says after the command
     @bot.command()
     async def say(ctx, *what ):
