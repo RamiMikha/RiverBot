@@ -32,7 +32,7 @@ def run():
                 await bot.load_extension(f"cmds.{cmd_file.name[:-3]}")
 
 
-   #ctx gettings a bunch on context from discord.py 
+   #ctx gettings a bunch of context from discord.py 
     @bot.command(
         #this allows you to access the command with different alisases
         aliases=["p"],
@@ -44,6 +44,18 @@ def run():
     )
     async def ping(ctx):
         await ctx.send("pong")
+<<<<<<< HEAD
+=======
+    
+    #the second premis takes in what the user says after the command word 
+    #the astricts allows you to take in a infinite amount of word the user says after the command
+    @bot.command()
+    async def say(ctx, *what ):
+        try:
+            await ctx.send(" ".join(what))
+        except Exception:
+            await ctx.send("Say What?")
+>>>>>>> 5e76bbfddf48c53499c8cce0cd31a5c17b1d23d6
 
  #runs the bot from the api saved in settings
     bot.run(settings.DISCORD_API_SECRET)
