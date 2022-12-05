@@ -25,6 +25,12 @@ def run():
         print("Bot is Ready!")
         print("--------------------")
 
+        #imports the commands once the bot is ready
+        for cmd_file in settings.CMDS_DIR.glob("*.py"):
+            if cmd_file.name !="__init.py":
+                #loads the command file but ignores the ".py"
+                await bot.load_extension(f"cmds.{cmd_file.name[:-3]}")
+
 
    #ctx gettings a bunch on context from discord.py 
     @bot.command(
@@ -38,27 +44,8 @@ def run():
     )
     async def ping(ctx):
         await ctx.send("pong")
-    
-    #the second premis takes in what the user says after the command word
-    #the astricts allows you to take in a infinite amount of word the user says after the command
-    @bot.command()
-    async def say(ctx, *what ):
-        try:
-            await ctx.send(" ".join(what))
-        except Exception:
-            await ctx.send("Say What?")
 
-
-    @bot.command(
-        brief = "Picks from options given at random",
-        help = "The bot will pick at random from the option it is given. Make sure the choices are separated by commas"
-    )
-    async def choice(ctx, *options):
-        choices = " ".join(options).split(",")
-        await ctx.send(random.choice(choices))
-
- 
-    #runs the bot from the api saved in settings
+ #runs the bot from the api saved in settings
     bot.run(settings.DISCORD_API_SECRET)
 
 if __name__ == "__main__":
