@@ -1,7 +1,8 @@
 import settings
 import discord
 from discord.ext import commands
-import random
+from cogs.greetings import Greetings
+
 
 def run():
     """
@@ -26,24 +27,27 @@ def run():
         print("--------------------")
 
         #imports the commands once the bot is ready
-        for cmd_file in settings.CMDS_DIR.glob("*.py"):
-            if cmd_file.name !="__init.py":
+        for cog_file in settings.COGS_DIR.glob("*.py"):
+            if cog_file !="__init__.py":
                 #loads the command file but ignores the ".py"
-                await bot.load_extension(f"cmds.{cmd_file.name[:-3]}")
+                await bot.load_extension(f"cogs.{cog_file.name[:-3]}")
+
+        #loads the greetings category        
+
 
 
    #ctx gettings a bunch of context from discord.py 
-    @bot.command(
+    #@bot.command(
         #this allows you to access the command with different alisases
-        aliases=["p"],
-        help="This gives help about the command in a specific message for each command",
-        description="This gives a longer description about the command in a specific message for each command",
-        brief="This gives a short description in the list of commands"
+        #aliases=["p"],
+        #help="This gives help about the command in a specific message for each command",
+        #description="This gives a longer description about the command in a specific message for each command",
+        #brief="This gives a short description in the list of commands"
         #enabled=False would disable the command
         #hidden=True would not show the command in the help list
-    )
-    async def ping(ctx):
-        await ctx.send("pong")
+    #)
+    #async def ping(ctx):
+        #await ctx.send("pong")
 
  #runs the bot from the api saved in settings
     bot.run(settings.DISCORD_API_SECRET)
